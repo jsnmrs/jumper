@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jumper</title>
+  <meta name="author" content="Jason Morris">
+  <meta name="description" content="Ensure jump links move keyboard focus">
+  <style type="text/css">
+    *,*::after,*::before{box-sizing:border-box}body{color:#222;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';margin:0;}.faux-header,footer{background-color:#f1f1f1;padding:1em}.faux-header{border-bottom:1px solid #ccc;margin-bottom:1.5em;}footer{border-top:1px solid #ccc;margin-top:1.5em;padding:3em;}section{padding:0.25em 1em}article{margin-bottom:2.5em}h1{margin:0}h2{margin:1em 0 0.5em}h3,h4{margin:1em 0 0.5em}p{line-height:1.4;margin:0.5em 0 0}a:link,a:visited{color:#1800ee}form{background-color:#f1f1f1;border:1px solid #ccc;margin-bottom:2em;margin-top:2em;padding:3em 2em;position:relative;transition:background-color 0.15s linear}input,label{display:block;font-size:1em;margin:0.5em 0}label,button{font-size:1.5em;text-align:center}blockquote{border-left:3px solid #ccc;color:#666;margin:1em 0.5em;padding:0 1em}small{padding-left:0.25em}.help{margin-top:3em}.help h2{display:flex}.flag{border-radius:0.25em;display:block;margin:0.25em 0;padding:0.5em 0.75em}.flag span,.flag strong{display:flex;align-items:center;min-width:12em}.first{margin-top:0;}.default{background-color:#f6f6f6}.failure{background-color:#f8d7da}.warning{background-color:#fff3cd}.is-dragover,.success{background-color:#d4edda}.title{display:block;font-size:1.5em;font-weight:bold;margin:1.5em 0 0.25em;padding:0}.upload-icon{width:100%;height:4em;fill:#333;display:block;margin-bottom:2em}.upload-input{width:0.1px;height:0.1px;opacity:0;overflow:hidden;position:absolute;z-index:-1}.upload-input + label{text-align:center}.upload-input + label strong{color:#1800ee;text-decoration:underline}.upload-input + label:hover strong,.upload-input.has-focus + label strong,.upload-input:focus + label strong{color:#001f3f;cursor:pointer}.more-info{background-color:#0074d9;border:1px solid #0074d9;border-radius:50%;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;font-size:0.75em;font-weight:bold;width:1.25em;height:1.25em;text-align:center;text-decoration:none;margin-left:0.5em;margin-top:0.15em;}.more-info:link,.more-info:visited{color:#fff}.submit{text-align:center;margin-top:2.5rem;}footer p{text-align:center;}@media screen and (min-width: 30em){.flag{display:flex}.title{display:block}}@media screen and (min-width: 64em){.faux-header{display:flex;align-items: baseline;}.info{padding:0 2em}.wrap{display:flex}section:first-child{flex-grow:1}.help{flex-shrink:0;margin-top:2em;max-width:32em}}
+    .demo {max-width: 35rem;margin: 0 auto;}
+    .demo p, .demo li{font-size:1.25rem;line-height:1.5;}
+    .demo p {margin-bottom: 2rem;}
+    .space[aria-hidden="true"] {
+      background: #fef;
+      padding: 5rem;
+      text-align: center;
+    }
+    .space[aria-hidden="true"]::before {
+      content: "spacer";
+      color: #f8f;
+      font-size: 2rem;
+    }
+    [id]:target {
+      background-color: #dfd;
+    }
+    [id]:target::after {
+      content: "Is \003atarget";
+      color: #222;
+      background-color: #fff;
+      padding: 0.25rem 0.5rem;
+      border: 0.25rem solid #f8f;
+      display: inline-block;
+    }
+    [tabindex="-1"]:target {
+      background-color: #fef;
+      border: 0.25rem solid #f8f;
+    }
+    [tabindex="-1"]:target::after {
+      content: "✅ Is \003atarget and has tabindex of -1";
+      color: #222;
+      background-color: #fef;
+      padding: 0.25rem 0.5rem;
+      border: 0.25rem solid #f8f;
+      display: inline-block;
+    }
+    label, input, select, textarea {
+      display: inline;
+      font-size: inherit;
+    }
+  </style>
+
+</head>
+<body>
+  <main>
+    <div class="faux-header">
+      <h1>Jumper<span aria-hidden="true">↓↑</span></h1>
+      <div class="info">
+        <p>Ensure jump links move keyboard focus</p>
+      </div>
+    </div>
+
+    <div class="demo">
+      <h2 id="test-top">Jumper tests</h2>
+      <ul>
+        <li><a href="#skip1">Test <code>#skip1</code></a></li>
+        <li><a href="#skip-2">Test <code>#skip-2</code></a></li>
+        <li><a href="#skip_3">Test <code>#skip_3</code></a></li>
+        <li><a href="#Skip4">Test <code>#Skip4</code></a></li>
+        <li><a href="#skip:5">Test <code>#skip:5</code></a> (invalid CSS selector)</li>
+        <li><a href="#skip.6">Test <code>#skip.6</code></a> (invalid CSS selector)</li>
+        <li><a href="#skip?7">Test <code>#skip?7</code></a> (invalid CSS selector)</li>
+        <li><a href="#skip8">Test <code>#skip8</code>, to <code>&lt;a&gt;</code> element</a></li>
+        <li><a href="#skip9">Test <code>#skip9</code>, to <code>&lt;button&gt;</code> element</a></li>
+        <li><a href="#skip10">Test <code>#skip10</code>, to <code>&lt;input&gt;</code> element</a></li>
+        <li><a href="#skip11">Test <code>#skip11</code>, to <code>&lt;select&gt;</code> element</a></li>
+        <li><a href="#skip12">Test <code>#skip12</code>, to <code>&lt;textarea&gt;</code> element</a></li>
+      </ul>
+
+      <p id="skip1">Mr. Utterson the lawyer was a man of a rugged countenance that was never lighted by a smile; cold, scanty and embarrassed in discourse; backward in sentiment; lean, long, dusty, dreary and yet somehow lovable.</p>
+      <p><a href="#test-top">Back to test list<span aria-hidden="true">↑</span></a></p>
+
+      <p id="skip-2">At friendly meetings, and when the wine was to his taste, something eminently human beaconed from his eye; something indeed which never found its way into his talk, but which spoke not only in these silent symbols of the after-dinner face, but more often and loudly in the acts of his life.</p>
+      <p><a href="#test-top">Back to test list<span aria-hidden="true">↑</span></a></p>
+
+      <p id="skip_3">He was austere with himself; drank gin when he was alone, to mortify a taste for vintages; and though he enjoyed the theatre, had not crossed the doors of one for twenty years.</p>
+      <p><a href="#test-top">Back to test list<span aria-hidden="true">↑</span></a></p>
+
+      <p id="Skip4">In this character, it was frequently his fortune to be the last reputable acquaintance and the last good influence in the lives of downgoing men.</p>
+      <p><a href="#test-top">Back to test list<span aria-hidden="true">↑</span></a></p>
+
+      <p id="skip:5">But he had an approved tolerance for others; sometimes wondering, almost with envy, at the high pressure of spirits involved in their misdeeds; and in any extremity inclined to help rather than to reprove.</p>
+      <p><a href="#test-top">Back to test list<span aria-hidden="true">↑</span></a></p>
+
+      <p id="skip.6">“I incline to Cain’s heresy,” he used to say quaintly: “I let my brother go to the devil in his own way.”</p>
+      <p><a href="#test-top">Back to test list<span aria-hidden="true">↑</span></a></p>
+
+      <p id="skip?7">And to such as these, so long as they came about his chambers, he never marked a shade of change in his demeanour.</p>
+      <p><a href="#test-top">Back to test list<span aria-hidden="true">↑</span></a></p>
+
+      <p><a href="#" id="skip8">No doubt the feat was easy to Mr. Utterson</a>; for he was undemonstrative at the best, and even his friendship seemed to be founded in a similar catholicity of good-nature.</p>
+      <p><a href="#test-top">Back to test list<span aria-hidden="true">↑</span></a></p>
+
+      <p>It is the mark of a <button id="skip9">modest</button> man to accept his friendly circle ready-made from the hands of opportunity; and that was the lawyer’s way.</p>
+      <p><a href="#test-top">Back to test list<span aria-hidden="true">↑</span></a></p>
+
+      <p>His friends were those of <label for="skip10">his own</label> <input type="text" value="blood" id="skip10"> or those whom he had known the longest; his affections, like ivy, were the growth of time, they implied no aptness in the object.</p>
+      <p><a href="#test-top">Back to test list<span aria-hidden="true">↑</span></a></p>
+
+      <p>Hence, no doubt the bond that united him to <label for="skip11">Mr. Richard Enfield</label>, <select id="skip11"><option>his distant kinsman</option></select>, the well-known man about town.</p>
+      <p><a href="#test-top">Back to test list<span aria-hidden="true">↑</span></a></p>
+
+      <p><label for="skip12">It was a nut to crack for many</label>, <textarea id="skip12">what these two could see in each other, or what subject they could find in common.</textarea> It was reported by those who encountered them in their Sunday walks, that they said nothing, looked singularly dull and would hail with obvious relief the appearance of a friend.</p>
+      <p><a href="#test-top">Back to test list<span aria-hidden="true">↑</span></a></p>
+    </div>
+  </main>
+
+  <footer><p>MIT Licensed. Read the <a href="https://jasonmorris.com/code/jumper/">Jumper blog post</a>. Source code on <a href="https://github.com/jsnmrs/jumper">GitHub</a>. Created by <a href="https://jasonmorris.com">Jason Morris</a>.</p></footer>
+
+  <script src="jumper.js"></script>
+</body>
+</html>

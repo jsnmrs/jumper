@@ -1,0 +1,22 @@
+{
+  "name": "jumper",
+  "description": "Ensure jump links move keyboard focus",
+  "main": "index.html",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "7.21.0",
+    "@babel/eslint-parser": "7.19.1",
+    "@babel/preset-env": "7.20.2",
+    "eslint": "8.35.0",
+    "eslint-config-prettier": "8.7.0",
+    "prettier": "2.8.4",
+    "serve": "14.2.0"
+  },
+  "scripts": {
+    "eslint": "eslint *.js --fix",
+    "prettier": "prettier --write \"*.js\"",
+    "serve": "npx serve",
+    "start": "npm run test && npm run serve",
+    "test": "npm run prettier && npm run eslint"
+  }
+}
