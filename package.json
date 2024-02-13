@@ -7,6 +7,8 @@
     "@babel/core": "7.23.9",
     "@babel/eslint-parser": "7.23.10",
     "@babel/preset-env": "7.23.9",
+    "cypress": "^13.6.4",
+    "cypress-real-events": "^1.11.0",
     "eslint": "8.56.0",
     "eslint-config-prettier": "9.1.0",
     "prettier": "3.2.4",
@@ -17,6 +19,6 @@
     "prettier": "prettier --write \"*.js\"",
     "serve": "npx serve",
     "start": "npm run test && npm run serve",
-    "test": "npm run prettier && npm run eslint"
+    "test": "npm run prettier && npm run eslint && cypress run"
   }
 }
