@@ -48,10 +48,24 @@
       display: inline;
       font-size: inherit;
     }
+    .skip {
+      position: fixed;
+      inset-inline-start: -999rem;
+    }
+
+    .skip:is(:active, :focus) {
+      inset-inline-start: 0;
+      z-index: 100;
+      padding-block: 0.5rem;
+      padding-inline: 0.75rem;
+    }
   </style>
 
 </head>
 <body>
+  <header>
+    <a href="#content" class="skip">Skip to content</a>
+  </header>
   <main>
     <div class="faux-header">
       <h1>Jumper<span aria-hidden="true">↓↑</span></h1>
@@ -60,7 +74,7 @@
       </div>
     </div>
 
-    <div class="demo">
+    <div class="demo" id="content" tabindex="-1">
       <h2 id="test-top">Jumper tests</h2>
       <ul>
         <li><a href="#skip1">Test <code>#skip1</code></a></li>
