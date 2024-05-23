@@ -74,40 +74,55 @@
       </div>
     </div>
 
-    <div class="demo" id="content" tabindex="-1">
+    <div class="demo" id="content">
       <h2 id="test-top">Jumper tests</h2>
       <ul>
-        <li><a href="#skip1">Test <code>#skip1</code></a></li>
-        <li><a href="#skip-2">Test <code>#skip-2</code></a></li>
-        <li><a href="#skip_3">Test <code>#skip_3</code></a></li>
-        <li><a href="#Skip4">Test <code>#Skip4</code></a></li>
-        <li><a href="#skip:5">Test <code>#skip:5</code></a> (invalid CSS selector)</li>
-        <li><a href="#skip.6">Test <code>#skip.6</code></a> (invalid CSS selector)</li>
-        <li><a href="#skip?7">Test <code>#skip?7</code></a> (invalid CSS selector)</li>
-        <li><a href="#skip8">Test <code>#skip8</code>, to <code>&lt;a&gt;</code> element</a></li>
-        <li><a href="#skip9">Test <code>#skip9</code>, to <code>&lt;button&gt;</code> element</a></li>
-        <li><a href="#skip10">Test <code>#skip10</code>, to <code>&lt;input&gt;</code> element</a></li>
-        <li><a href="#skip11">Test <code>#skip11</code>, to <code>&lt;select&gt;</code> element</a></li>
-        <li><a href="#skip12">Test <code>#skip12</code>, to <code>&lt;textarea&gt;</code> element</a></li>
+        <li><a href="#skip0" id="link000">Test <code>#skip0</code> (has <code>tabindex="-1"</code>)</a></li>
+        <li><a href="#skip1" id="link001">Test <code>#skip1</code></a></li>
+        <li><a href="#skip-2" id="link002">Test <code>#skip-2</code></a></li>
+        <li><a href="#skip_3" id="link003">Test <code>#skip_3</code></a></li>
+        <li><a href="#Skip4" id="link004">Test <code>#Skip4</code></a></li>
+        <li><a href="#skip:5" id="link005">Test <code>#skip:5</code></a> (invalid CSS selector)</li>
+        <li><a href="#skip.6" id="link006">Test <code>#skip.6</code></a> (invalid CSS selector)</li>
+        <li><a href="#skip?7" id="link007">Test <code>#skip?7</code></a> (invalid CSS selector)</li>
+        <li><a href="#skip8" id="link008">Test <code>#skip8</code>, to <code>&lt;a&gt;</code> element</a></li>
+        <li><a href="#skip9" id="link009">Test <code>#skip9</code>, to <code>&lt;button&gt;</code> element</a></li>
+        <li><a href="#skip10" id="link010">Test <code>#skip10</code>, to <code>&lt;input&gt;</code> element</a></li>
+        <li><a href="#skip11" id="link011">Test <code>#skip11</code>, to <code>&lt;select&gt;</code> element</a></li>
+        <li><a href="#skip12" id="link012">Test <code>#skip12</code>, to <code>&lt;textarea&gt;</code> element</a></li>
       </ul>
 
+      <p><a id="e1" tabindex="0" role="button" aria-pressed="false">TOGGLE</a>
+
+        <span id="not-focusable">NOT FOCUSABLE</span>
+
+        <span id="e3" role="button">ACTION</span>
+
+        <button id="e4" aria-pressed="false">REAL BUTTON TOGGLE</button>
+
+        <button id="link013">REAL BUTTON ACTION</button>
+      </p>
+
+      <p id="skip0" tabindex="-1">Mr. Utterson the lawyer was a man of a rugged countenance that was never lighted by a smile; cold, scanty and embarrassed in discourse; backward in sentiment; lean, long, dusty, dreary and yet somehow lovable.</p>
+      <p><a href="#test-top" id="link020">Back to test list<span aria-hidden="true">↑</span></a></p>
+
       <p id="skip1">Mr. Utterson the lawyer was a man of a rugged countenance that was never lighted by a smile; cold, scanty and embarrassed in discourse; backward in sentiment; lean, long, dusty, dreary and yet somehow lovable.</p>
-      <p><a href="#test-top">Back to test list<span aria-hidden="true">↑</span></a></p>
+      <p><a href="#test-top" id="link014">Back to test list<span aria-hidden="true">↑</span></a></p>
 
       <p id="skip-2">At friendly meetings, and when the wine was to his taste, something eminently human beaconed from his eye; something indeed which never found its way into his talk, but which spoke not only in these silent symbols of the after-dinner face, but more often and loudly in the acts of his life.</p>
-      <p><a href="#test-top">Back to test list<span aria-hidden="true">↑</span></a></p>
+      <p><a href="#test-top" id="link015">Back to test list<span aria-hidden="true">↑</span></a></p>
 
       <p id="skip_3">He was austere with himself; drank gin when he was alone, to mortify a taste for vintages; and though he enjoyed the theatre, had not crossed the doors of one for twenty years.</p>
-      <p><a href="#test-top">Back to test list<span aria-hidden="true">↑</span></a></p>
+      <p><a href="#test-top" id="link016">Back to test list<span aria-hidden="true">↑</span></a></p>
 
       <p id="Skip4">In this character, it was frequently his fortune to be the last reputable acquaintance and the last good influence in the lives of downgoing men.</p>
-      <p><a href="#test-top">Back to test list<span aria-hidden="true">↑</span></a></p>
+      <p><a href="#test-top" id="link017">Back to test list<span aria-hidden="true">↑</span></a></p>
 
       <p id="skip:5">But he had an approved tolerance for others; sometimes wondering, almost with envy, at the high pressure of spirits involved in their misdeeds; and in any extremity inclined to help rather than to reprove.</p>
-      <p><a href="#test-top">Back to test list<span aria-hidden="true">↑</span></a></p>
+      <p><a href="#test-top" id="link018">Back to test list<span aria-hidden="true">↑</span></a></p>
 
       <p id="skip.6">“I incline to Cain’s heresy,” he used to say quaintly: “I let my brother go to the devil in his own way.”</p>
-      <p><a href="#test-top">Back to test list<span aria-hidden="true">↑</span></a></p>
+      <p><a href="#test-top" id="link019">Back to test list<span aria-hidden="true">↑</span></a></p>
 
       <p id="skip?7">And to such as these, so long as they came about his chambers, he never marked a shade of change in his demeanour.</p>
       <p><a href="#test-top">Back to test list<span aria-hidden="true">↑</span></a></p>
@@ -121,11 +136,16 @@
       <p>His friends were those of <label for="skip10">his own</label> <input type="text" value="blood" id="skip10"> or those whom he had known the longest; his affections, like ivy, were the growth of time, they implied no aptness in the object.</p>
       <p><a href="#test-top">Back to test list<span aria-hidden="true">↑</span></a></p>
 
-      <p>Hence, no doubt the bond that united him to <label for="skip11">Mr. Richard Enfield</label>, <select id="skip11"><option>his distant kinsman</option></select>, the well-known man about town.</p>
+      <p>Hence, no doubt the bond that united him to <label for="skip11">Mr. Richard Enfield</label>, <select id="skip11">
+          <option>his distant kinsman</option>
+        </select>, the well-known man about town.</p>
       <p><a href="#test-top">Back to test list<span aria-hidden="true">↑</span></a></p>
 
       <p><label for="skip12">It was a nut to crack for many</label>, <textarea id="skip12">what these two could see in each other, or what subject they could find in common.</textarea> It was reported by those who encountered them in their Sunday walks, that they said nothing, looked singularly dull and would hail with obvious relief the appearance of a friend.</p>
       <p><a href="#test-top">Back to test list<span aria-hidden="true">↑</span></a></p>
+      <p contentEditable="true">Mr. Utterson the lawyer was a man of a rugged countenance that was never lighted by a smile; cold, scanty and embarrassed in discourse; backward in sentiment; lean, long, dusty, dreary and yet somehow lovable.</p>
+      <div role="button">role="button" without tabindex</div>
+      <div role="button" tabindex="0">role="button" with tabindex="0"</div>
     </div>
   </main>
 
