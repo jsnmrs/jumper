@@ -1,6 +1,8 @@
 (function jumper() {
   "use strict";
 
+  document.body.classList.add("has-jumper");
+
   window.addEventListener("DOMContentLoaded", jumpCheck);
   window.addEventListener("hashchange", jumpCheck);
 
