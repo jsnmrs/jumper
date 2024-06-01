@@ -24,6 +24,8 @@ jobs:
         run: npx npm-check-updates -u
       - name: Install dependencies, build, and test
         run: npm install
+      - name: Reinstall Playwright browsers
+        run: npx playwright install
       - name: Build site
         run: npm run test
       - name: Create Pull Request
