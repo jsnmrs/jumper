@@ -5,16 +5,16 @@
   "license": "MIT",
   "devDependencies": {
     "@axe-core/playwright": "^4.10.0",
-    "@babel/core": "7.25.2",
-    "@babel/eslint-parser": "7.25.1",
-    "@babel/preset-env": "7.25.4",
-    "@playwright/test": "^1.47.2",
-    "@types/node": "^22.7.4",
-    "eslint": "9.11.1",
+    "@babel/core": "7.26.0",
+    "@babel/eslint-parser": "7.25.9",
+    "@babel/preset-env": "7.26.0",
+    "@playwright/test": "^1.48.2",
+    "@types/node": "^22.8.6",
+    "eslint": "9.13.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-prettier": "5.2.1",
     "prettier": "3.3.3",
-    "serve": "14.2.3"
+    "serve": "14.2.4"
   },
   "scripts": {
     "eslint": "eslint *.js \"tests/*.js\" --fix",
