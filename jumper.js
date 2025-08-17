@@ -1,3 +1,27 @@
+/**
+ * Jumper - Ensures jump links move keyboard focus to non-focusable elements
+ * 
+ * This IIFE automatically enhances elements with IDs to be focusable via jump links
+ * by adding tabindex="-1" to elements that aren't naturally focusable.
+ * 
+ * @function jumper
+ * @version 1.0.0
+ * @author Jason Morris
+ * @license MIT
+ * 
+ * @description
+ * When the DOM is ready, this function:
+ * 1. Adds 'has-jumper' class to body for CSS feature detection
+ * 2. Finds all elements with IDs that aren't naturally focusable
+ * 3. Adds tabindex="-1" to make them focusable without affecting tab order
+ * 
+ * @example
+ * // Automatically runs when script is loaded
+ * // No manual initialization required
+ * 
+ * @see {@link https://jasonmorris.com/code/jumper/} Documentation
+ * @see {@link https://github.com/jsnmrs/jumper} Source code
+ */
 (function jumper() {
   "use strict";
 
