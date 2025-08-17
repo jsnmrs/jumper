@@ -99,8 +99,9 @@ test.describe("Edge case handling", () => {
     const skipWithTabindex = page.locator("#skip0");
     await expect(skipWithTabindex).toHaveAttribute("tabindex", "-1");
 
+    // Check the specific div element with role="button" and tabindex="0"
     const roleButtonWithTabindex = page.locator(
-      '[role="button"][tabindex="0"]',
+      'div[role="button"][tabindex="0"]',
     );
     await expect(roleButtonWithTabindex).toHaveAttribute("tabindex", "0");
   });
@@ -128,13 +129,26 @@ test.describe("Edge case handling", () => {
 
   test("should verify jumper API is available", async ({ page }) => {
     // Test that the jumper API is exposed globally
+    const apiAvailable = await page.evaluate(() => {
+      return typeof window.jumper !== "undefined";
+    });
+    expect(apiAvailable).toBe(true);
+
     const isActive = await page.evaluate(() => {
-      return typeof window.jumper !== "undefined" && window.jumper.isActive;
+      return (
+        window.jumper &&
+        typeof window.jumper.isActive === "function" &&
+        window.jumper.isActive()
+      );
     });
     expect(isActive).toBe(true);
 
     const hasConfig = await page.evaluate(() => {
-      return typeof window.jumper.config === "object";
+      return (
+        window.jumper &&
+        typeof window.jumper.getConfig === "function" &&
+        typeof window.jumper.getConfig() === "object"
+      );
     });
     expect(hasConfig).toBe(true);
   });

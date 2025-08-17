@@ -134,9 +134,6 @@
   // Expose API to global scope and window object
   global.jumper = jumper;
   if (typeof window !== "undefined") {
-    window.jumper = {
-      config: getConfig(),
-      isActive: isActive(),
-    };
+    window.jumper = jumper;
   }
 })(typeof global !== "undefined" ? global : this);
