@@ -177,14 +177,14 @@ Jumper includes graceful error handling. If initialization fails, a warning will
 
 ## Browser compatibility
 
-| Feature | Chrome | Firefox | Safari | Edge | IE |
-|---------|--------|---------|--------|------|----|
-| **Core functionality** | ✅ 16+ | ✅ 4+ | ✅ 6+ | ✅ 12+ | ❌ |
-| **querySelector** | ✅ 16+ | ✅ 4+ | ✅ 6+ | ✅ 12+ | ❌ |
-| **addEventListener** | ✅ 16+ | ✅ 4+ | ✅ 6+ | ✅ 12+ | ❌ |
-| **classList** | ✅ 16+ | ✅ 4+ | ✅ 6+ | ✅ 12+ | ❌ |
-| **Performance API** | ✅ 25+ | ✅ 38+ | ✅ 8+ | ✅ 12+ | ❌ |
-| **Unicode IDs** | ✅ 16+ | ✅ 4+ | ✅ 6+ | ✅ 12+ | ❌ |
+| Feature | Chrome | Firefox | Safari | Edge |
+|---------|--------|---------|--------|------|
+| **Core functionality** | ✅ 16+ | ✅ 4+ | ✅ 6+ | ✅ 12+ |
+| **querySelector** | ✅ 16+ | ✅ 4+ | ✅ 6+ | ✅ 12+ |
+| **addEventListener** | ✅ 16+ | ✅ 4+ | ✅ 6+ | ✅ 12+ |
+| **classList** | ✅ 16+ | ✅ 4+ | ✅ 6+ | ✅ 12+ |
+| **Performance API** | ✅ 25+ | ✅ 38+ | ✅ 8+ | ✅ 12+ |
+| **Unicode IDs** | ✅ 16+ | ✅ 4+ | ✅ 6+ | ✅ 12+ |
 
 ### Minimum requirements
 - **ES6 features**: const, let, arrow functions, object spread
@@ -192,7 +192,6 @@ Jumper includes graceful error handling. If initialization fails, a warning will
 - **Optional**: Performance API (for performance monitoring)
 
 ### Notes
-- Internet Explorer is not supported due to ES6 requirements
 - Performance monitoring requires browsers with Performance API support
 - Unicode ID support works in all modern browsers
 - Mobile browsers (iOS Safari 8+, Chrome Mobile 18+) are fully supported
@@ -240,7 +239,7 @@ The test suite includes:
 - 📚 **API documentation** - Complete API reference and examples
 
 ### Breaking Changes from v0.x
-- Now requires ES6+ browser support (no IE support)
+- Now requires ES6+ browser support
 - Configuration API changed (if upgrading from custom builds)
 
 ### Migration Guide
