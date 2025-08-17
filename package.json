@@ -3,6 +3,7 @@
   "description": "Ensure jump links move keyboard focus",
   "main": "index.html",
   "types": "jumper.d.ts",
+  "type": "module",
   "license": "MIT",
   "devDependencies": {
     "@axe-core/playwright": "^4.10.2",
