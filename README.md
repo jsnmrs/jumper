@@ -20,6 +20,19 @@ via [Jess Budd's _5 takeaways from screen reader usability interviews_](https://
 - 📊 **Performance monitoring** - Optional performance marks for debugging
 - 🧪 **Well-tested** - Comprehensive test suite with accessibility testing via axe-core
 - 🚀 **Lightweight** - Zero runtime dependencies, minimal footprint
+- 📘 **TypeScript support** - Full type definitions included
+
+## Installation
+
+### Via script tag
+```html
+<script src="jumper.js"></script>
+```
+
+### Via npm (if published)
+```bash
+npm install jumper
+```
 
 ## Usage
 
@@ -51,6 +64,116 @@ if (jumper.isActive()) {
 const config = jumper.getConfig();
 console.log('Current config:', config);
 ```
+
+## Configuration
+
+### Default Configuration
+```javascript
+{
+  selector: "[id]:not(a[href], area[href], button, iframe, input, select, textarea, [contentEditable='true'], [tabindex])",
+  bodyClass: "has-jumper", 
+  tabindex: "-1",
+  enablePerformanceMarks: false
+}
+```
+
+### Configuration Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `selector` | string | `"[id]:not(a[href], area[href], button, iframe, input, select, textarea, [contentEditable='true'], [tabindex])"` | CSS selector for elements to make focusable |
+| `bodyClass` | string | `"has-jumper"` | CSS class to add to body element for feature detection |
+| `tabindex` | string | `"-1"` | Tabindex value to assign to target elements |
+| `enablePerformanceMarks` | boolean | `false` | Enable performance monitoring marks |
+
+## API Reference
+
+### Methods
+
+#### `jumper.init(config?)`
+Initialize or reconfigure Jumper.
+
+**Parameters:**
+- `config` (optional): Configuration object with the options listed above
+
+**Example:**
+```javascript
+jumper.init({
+  selector: '[id].focusable:not([tabindex])',
+  bodyClass: 'custom-jumper',
+  enablePerformanceMarks: true
+});
+```
+
+#### `jumper.isActive()`
+Returns `true` if Jumper has been initialized and the body has the jumper class.
+
+**Returns:** `boolean`
+
+#### `jumper.getConfig()`
+Returns a copy of the current configuration object.
+
+**Returns:** `object`
+
+#### `jumper.version`
+Current version string.
+
+**Returns:** `string`
+
+## TypeScript Support
+
+Jumper includes TypeScript definitions out of the box:
+
+```typescript
+import { jumper, JumperConfig } from 'jumper';
+
+const config: JumperConfig = {
+  selector: '[id].focusable:not([tabindex])',
+  enablePerformanceMarks: true
+};
+
+jumper.init(config);
+
+if (jumper.isActive()) {
+  console.log('Jumper is running');
+}
+```
+
+## Performance Monitoring
+
+Enable performance monitoring to measure initialization time:
+
+```javascript
+jumper.init({ enablePerformanceMarks: true });
+
+// Check performance marks in DevTools
+performance.getEntriesByType('mark').filter(mark => 
+  mark.name.startsWith('jumper-')
+);
+
+// Check performance measures  
+performance.getEntriesByType('measure').filter(measure => 
+  measure.name.includes('jumper')
+);
+```
+
+Available performance marks:
+- `jumper-init-start` - Initialization begins
+- `jumper-query-complete` - DOM query completed
+- `jumper-init-end` - Initialization finished
+
+Available performance measures:
+- `jumper-init-duration` - Total initialization time
+- `jumper-query-duration` - Time to find target elements
+
+## Error Handling
+
+Jumper includes graceful error handling. If initialization fails, a warning will be logged to the console, but your application will continue to function normally. Common scenarios handled:
+
+- DOM not ready when script loads
+- Invalid CSS selectors
+- Missing Performance API (when performance monitoring is enabled)
+- Elements that can't receive focus
 
 ## Browser compatibility
 
@@ -92,6 +215,49 @@ The test suite includes:
 - ✅ **Functional testing** with Playwright  
 - ✅ **Unicode support testing** for international characters
 - ✅ **Edge case testing** for various ID formats
+- ✅ **API testing** for configuration and method availability
+- ✅ **Error handling testing** for edge cases and failures
+
+### Test Coverage
+- Skip link functionality across different element types
+- Unicode ID support (Chinese, Cyrillic, emoji, accented characters)
+- Edge cases (existing tabindex, naturally focusable elements)
+- API availability and configuration
+- Accessibility compliance via axe-core
+
+## Version
+
+**Current version:** 1.0.0
+
+### What's New in v1.0.0
+- ✨ **Configurable API** - Initialize with custom selectors and options
+- 🌐 **Unicode support** - Full support for international characters in IDs
+- 📘 **TypeScript definitions** - Complete type definitions included
+- 📊 **Performance monitoring** - Optional performance marks for debugging
+- 🔒 **Error handling** - Graceful error handling with console warnings
+- 🧪 **Enhanced testing** - Comprehensive test suite with Unicode and edge cases
+- ⚙️ **ES module support** - Full ES6 module compatibility
+- 📚 **API documentation** - Complete API reference and examples
+
+### Breaking Changes from v0.x
+- Now requires ES6+ browser support (no IE support)
+- Configuration API changed (if upgrading from custom builds)
+
+### Migration Guide
+If you were using a previous version with basic inclusion:
+```html
+<!-- Old way - still works -->
+<script src="jumper.js"></script>
+
+<!-- New way - same behavior, more options available -->
+<script src="jumper.js"></script>
+<script>
+  // Optional: customize behavior
+  jumper.init({
+    enablePerformanceMarks: true
+  });
+</script>
+```
 
 ## References
 
