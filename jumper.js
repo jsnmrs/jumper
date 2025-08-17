@@ -23,7 +23,6 @@
     selector:
       "[id]:not(a[href], area[href], button, iframe, input, select, textarea, [contentEditable='true'], [tabindex])",
     bodyClass: "has-jumper",
-    tabindex: "-1",
     enablePerformanceMarks: false,
   };
 
@@ -39,7 +38,6 @@
    * @param {Object} [userConfig] - Configuration options
    * @param {string} [userConfig.selector] - Custom CSS selector for elements to make focusable
    * @param {string} [userConfig.bodyClass] - CSS class to add to body element
-   * @param {string} [userConfig.tabindex] - Tabindex value to assign to target elements
    * @param {boolean} [userConfig.enablePerformanceMarks] - Whether to enable performance monitoring
    *
    * @example
@@ -50,8 +48,7 @@
    * // Custom configuration
    * jumper.init({
    *   selector: '[id].jump-target:not([tabindex])',
-   *   bodyClass: 'custom-jumper',
-   *   tabindex: '0'
+   *   bodyClass: 'custom-jumper'
    * });
    */
   function init(userConfig = {}) {
@@ -75,7 +72,7 @@
 
       // Add tabindex to make elements focusable
       jumpTargets.forEach((jumpTarget) => {
-        jumpTarget.setAttribute("tabindex", config.tabindex);
+        jumpTarget.setAttribute("tabindex", "-1");
         jumpTarget.hasJumperTabindex = true;
       });
 

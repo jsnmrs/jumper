@@ -51,7 +51,6 @@ Simply include the script in your HTML - it will automatically initialize when t
 jumper.init({
   selector: '[id].jump-target:not([tabindex])',  // Custom selector
   bodyClass: 'custom-jumper',                    // Custom CSS class
-  tabindex: '0',                                 // Custom tabindex value
   enablePerformanceMarks: true                   // Enable performance monitoring
 });
 
@@ -71,8 +70,7 @@ console.log('Current config:', config);
 ```javascript
 {
   selector: "[id]:not(a[href], area[href], button, iframe, input, select, textarea, [contentEditable='true'], [tabindex])",
-  bodyClass: "has-jumper", 
-  tabindex: "-1",
+  bodyClass: "has-jumper",
   enablePerformanceMarks: false
 }
 ```
@@ -83,7 +81,6 @@ console.log('Current config:', config);
 |--------|------|---------|-------------|
 | `selector` | string | `"[id]:not(a[href], area[href], button, iframe, input, select, textarea, [contentEditable='true'], [tabindex])"` | CSS selector for elements to make focusable |
 | `bodyClass` | string | `"has-jumper"` | CSS class to add to body element for feature detection |
-| `tabindex` | string | `"-1"` | Tabindex value to assign to target elements |
 | `enablePerformanceMarks` | boolean | `false` | Enable performance monitoring marks |
 
 ## API Reference

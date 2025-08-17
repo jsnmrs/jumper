@@ -16,8 +16,6 @@ declare module 'jumper' {
     selector?: string;
     /** CSS class to add to body element for feature detection (default: 'has-jumper') */
     bodyClass?: string;
-    /** Tabindex value to assign to target elements (default: '-1') */
-    tabindex?: string;
     /** Whether to enable performance monitoring (default: false) */
     enablePerformanceMarks?: boolean;
   }
