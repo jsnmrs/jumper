@@ -1,7 +1,7 @@
 # jumper
 Ensure jump links move keyboard focus. Read the [Jumper blog post](https://jasonmorris.com/code/jumper).
 
-<https://jsnmrs.github.io/jumper>
+**[🚀 Live Demo](https://jsnmrs.github.io/jumper/)**
 
 >The majority of users suggested skip links are less efficient for them than other methods of bypassing repeated content. (They also mentioned that **much of the time skip links are broken because often the keyboard focus does not move**.)
 >
@@ -24,14 +24,18 @@ via [Jess Budd's _5 takeaways from screen reader usability interviews_](https://
 
 ## Installation
 
-### Via script tag
+### Download and include
+
+1. Download `jumper.js` from the [releases page](https://github.com/jsnmrs/jumper/releases) or clone this repository
+2. Include the script in your HTML:
+
 ```html
-<script src="jumper.js"></script>
+<script src="path/to/jumper.js"></script>
 ```
 
-### Via npm (if published)
-```bash
-npm install jumper
+### Via CDN (jsDelivr)
+```html
+<script src="https://cdn.jsdelivr.net/gh/jsnmrs/jumper@main/jumper.js"></script>
 ```
 
 ## Usage
@@ -254,6 +258,54 @@ If you were using a previous version with basic inclusion:
   });
 </script>
 ```
+
+## Development
+
+### Local setup
+
+1. Clone the repository:
+```bash
+git clone https://github.com/jsnmrs/jumper.git
+cd jumper
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Install Playwright browsers for testing:
+```bash
+npx playwright install
+```
+
+4. Run tests:
+```bash
+npm test
+```
+
+5. Start local development server:
+```bash
+npm run serve
+```
+
+### Contributing
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature-name`
+3. Make your changes
+4. Run tests to ensure everything works: `npm test`
+5. Commit your changes: `git commit -am 'Add feature'`
+6. Push to the branch: `git push origin feature-name`
+7. Submit a pull request
+
+### Project structure
+
+- `jumper.js` - Main library file
+- `jumper.d.ts` - TypeScript definitions
+- `index.html` - Demo page
+- `tests/` - Playwright test suite
+- `.github/workflows/` - CI/CD configuration
 
 ## References
 
