@@ -1,124 +1,97 @@
 // @ts-check
 import { test, expect } from "@playwright/test";
+import { JumperPage } from "./pages/JumperPage.js";
+import { Selectors } from "./helpers.js";
 
 test.describe("Unicode and special character ID handling", () => {
+  /** @type {JumperPage} */
+  let jumperPage;
+
   test.beforeEach(async ({ page }) => {
-    await page.goto("http://localhost:3000");
-    await expect(page.locator("body")).toHaveClass(/has-jumper/);
+    jumperPage = new JumperPage(page);
+    await jumperPage.goto();
   });
 
-  test("should handle Chinese characters in IDs", async ({ page }) => {
-    const element = page.locator("#测试");
-    await expect(element).toBeVisible();
-    await expect(element).toHaveAttribute("tabindex", "-1");
-
-    // Test that the element can receive focus
-    await element.focus();
-    await expect(element).toBeFocused();
+  test("should handle Chinese characters in IDs", async () => {
+    await jumperPage.testUnicodeElement("测试");
   });
 
-  test("should handle accented characters in IDs", async ({ page }) => {
-    const element = page.locator("#café");
-    await expect(element).toBeVisible();
-    await expect(element).toHaveAttribute("tabindex", "-1");
-
-    // Test that the element can receive focus
-    await element.focus();
-    await expect(element).toBeFocused();
+  test("should handle accented characters in IDs", async () => {
+    await jumperPage.testUnicodeElement("café");
   });
 
-  test("should handle emoji characters in IDs", async ({ page }) => {
-    const element = page.locator("#🚀emoji");
-    await expect(element).toBeVisible();
-    await expect(element).toHaveAttribute("tabindex", "-1");
-
-    // Test that the element can receive focus
-    await element.focus();
-    await expect(element).toBeFocused();
+  test("should handle emoji characters in IDs", async () => {
+    await jumperPage.testUnicodeElement("🚀emoji");
   });
 
-  test("should handle Cyrillic characters in IDs", async ({ page }) => {
-    const element = page.locator("#привет");
-    await expect(element).toBeVisible();
-    await expect(element).toHaveAttribute("tabindex", "-1");
-
-    // Test that the element can receive focus
-    await element.focus();
-    await expect(element).toBeFocused();
+  test("should handle Cyrillic characters in IDs", async () => {
+    await jumperPage.testUnicodeElement("привет");
   });
 
-  test("should handle Spanish characters in IDs", async ({ page }) => {
-    const element = page.locator("#ñoño");
-    await expect(element).toBeVisible();
-    await expect(element).toHaveAttribute("tabindex", "-1");
-
-    // Test that the element can receive focus
-    await element.focus();
-    await expect(element).toBeFocused();
+  test("should handle Spanish characters in IDs", async () => {
+    await jumperPage.testUnicodeElement("ñoño");
   });
 
-  test("should handle mixed special characters in IDs", async ({ page }) => {
-    const element = page.locator("#special-chars_123");
-    await expect(element).toBeVisible();
-    await expect(element).toHaveAttribute("tabindex", "-1");
-
-    // Test that the element can receive focus
-    await element.focus();
-    await expect(element).toBeFocused();
+  test("should handle mixed special characters in IDs", async () => {
+    await jumperPage.testUnicodeElement("special-chars_123");
   });
 
   test("should handle all Unicode elements correctly", async ({ page }) => {
+    const unicodeIds = [
+      "测试",
+      "café",
+      "🚀emoji",
+      "привет",
+      "ñoño",
+      "special-chars_123",
+    ];
+
     // Count all elements that should have tabindex="-1"
-    const unicodeElements = await page
-      .locator(
-        '[id="测试"], [id="café"], [id="🚀emoji"], [id="привет"], [id="ñoño"], [id="special-chars_123"]',
-      )
-      .count();
+    const unicodeElementsSelector = unicodeIds
+      .map((id) => `[id="${id}"]`)
+      .join(", ");
+    const unicodeElements = await page.locator(unicodeElementsSelector).count();
     expect(unicodeElements).toBe(6);
 
     // Verify all have tabindex="-1"
+    const elementsWithTabindexSelector = unicodeIds
+      .map((id) => Selectors.unicodeElement(id))
+      .join(", ");
     const elementsWithTabindex = await page
-      .locator(
-        '[id="测试"][tabindex="-1"], [id="café"][tabindex="-1"], [id="🚀emoji"][tabindex="-1"], [id="привет"][tabindex="-1"], [id="ñoño"][tabindex="-1"], [id="special-chars_123"][tabindex="-1"]',
-      )
+      .locator(elementsWithTabindexSelector)
       .count();
     expect(elementsWithTabindex).toBe(6);
   });
 });
 
 test.describe("Edge case handling", () => {
+  /** @type {JumperPage} */
+  let jumperPage;
+
   test.beforeEach(async ({ page }) => {
-    await page.goto("http://localhost:3000");
-    await expect(page.locator("body")).toHaveClass(/has-jumper/);
+    jumperPage = new JumperPage(page);
+    await jumperPage.goto();
   });
 
-  test("should not affect elements that already have tabindex", async ({
-    page,
-  }) => {
+  test("should not affect elements that already have tabindex", async () => {
     // Elements with existing tabindex should not be modified
-    const skipWithTabindex = page.locator("#skip0");
-    await expect(skipWithTabindex).toHaveAttribute("tabindex", "-1");
+    await jumperPage.verifyExistingTabindexPreserved("skip0", "-1");
 
     // Check the specific div element with role="button" and tabindex="0"
+    const { page } = jumperPage;
     const roleButtonWithTabindex = page.locator(
       'div[role="button"][tabindex="0"]',
     );
     await expect(roleButtonWithTabindex).toHaveAttribute("tabindex", "0");
   });
 
-  test("should not affect naturally focusable elements", async ({ page }) => {
-    // Check that buttons, inputs, etc. don't get modified
-    const button = page.locator("#skip9");
-    await expect(button).not.toHaveAttribute("tabindex");
-
-    const input = page.locator("#skip10");
-    await expect(input).not.toHaveAttribute("tabindex");
-
-    const select = page.locator("#skip11");
-    await expect(select).not.toHaveAttribute("tabindex");
-
-    const textarea = page.locator("#skip12");
-    await expect(textarea).not.toHaveAttribute("tabindex");
+  test("should not affect naturally focusable elements", async () => {
+    await jumperPage.verifyNaturallyFocusableElementsUnmodified([
+      "skip9", // button
+      "skip10", // input
+      "skip11", // select
+      "skip12", // textarea
+    ]);
   });
 
   test("should handle contentEditable elements correctly", async ({ page }) => {
@@ -127,29 +100,8 @@ test.describe("Edge case handling", () => {
     await expect(contentEditable).not.toHaveAttribute("tabindex");
   });
 
-  test("should verify jumper API is available", async ({ page }) => {
-    // Test that the jumper API is exposed globally
-    const apiAvailable = await page.evaluate(() => {
-      return typeof window.jumper !== "undefined";
-    });
-    expect(apiAvailable).toBe(true);
-
-    const isActive = await page.evaluate(() => {
-      return (
-        window.jumper &&
-        typeof window.jumper.isActive === "function" &&
-        window.jumper.isActive()
-      );
-    });
-    expect(isActive).toBe(true);
-
-    const hasConfig = await page.evaluate(() => {
-      return (
-        window.jumper &&
-        typeof window.jumper.getConfig === "function" &&
-        typeof window.jumper.getConfig() === "object"
-      );
-    });
-    expect(hasConfig).toBe(true);
+  test("should verify jumper API is available", async () => {
+    await jumperPage.verifyJumperInitialization();
+    await jumperPage.verifyJumperAPI();
   });
 });
