@@ -9,11 +9,11 @@
     "@babel/eslint-parser": "7.28.5",
     "@babel/preset-env": "7.28.5",
     "@playwright/test": "^1.57.0",
-    "@types/node": "^24.10.1",
-    "eslint": "9.39.1",
+    "@types/node": "^25.0.3",
+    "eslint": "9.39.2",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-prettier": "5.5.4",
-    "prettier": "3.7.3",
+    "prettier": "3.7.4",
     "serve": "14.2.5"
   },
   "scripts": {
