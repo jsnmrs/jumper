@@ -6,12 +6,12 @@
   "devDependencies": {
     "@axe-core/playwright": "^4.11.1",
     "@playwright/test": "^1.58.2",
-    "@types/node": "^25.3.3",
-    "eslint": "10.0.2",
+    "@types/node": "^25.3.5",
+    "eslint": "10.0.3",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-prettier": "5.5.5",
     "prettier": "3.8.1",
-    "serve": "14.2.5"
+    "serve": "14.2.6"
   },
   "scripts": {
     "eslint": "eslint *.js \"tests/*.js\" --fix",
