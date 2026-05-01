@@ -4,13 +4,13 @@
   "main": "index.html",
   "license": "MIT",
   "devDependencies": {
-    "@axe-core/playwright": "^4.11.1",
-    "@playwright/test": "^1.59.0",
-    "@types/node": "^25.5.0",
-    "eslint": "10.1.0",
+    "@axe-core/playwright": "^4.11.3",
+    "@playwright/test": "^1.59.1",
+    "@types/node": "^25.6.0",
+    "eslint": "10.2.1",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-prettier": "5.5.5",
-    "prettier": "3.8.1",
+    "prettier": "3.8.3",
     "serve": "14.2.6"
   },
   "scripts": {
@@ -22,6 +22,6 @@
     "test": "npm run prettier && npm run eslint && npx playwright test"
   },
   "dependencies": {
-    "@estruyf/github-actions-reporter": "^1.11.0"
+    "@estruyf/github-actions-reporter": "^1.12.0"
   }
 }
